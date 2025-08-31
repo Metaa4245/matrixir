@@ -7,7 +7,18 @@ defmodule Matrixir.MixProject do
       version: "0.1.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+
+      name: "Matrixir",
+      source_url: "https://github.com/Metaa4245/matrixir",
+      docs: &docs/0
+    ]
+  end
+
+  defp docs do
+    [
+      main: "Matrixir",
+      extras: ["README.md"]
     ]
   end
 
@@ -19,6 +30,7 @@ defmodule Matrixir.MixProject do
 
   def deps do
     [
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false, warn_if_outdated: true},
       {:finch, "~> 0.20"}
     ]
   end

@@ -1,5 +1,5 @@
 defmodule Matrixir do
   @moduledoc """
-  Matrix library for Elixir.
+  Elixir library for Matrix.
   """
 end

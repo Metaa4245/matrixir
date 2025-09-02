@@ -188,6 +188,7 @@ defmodule Matrixir.API.Error do
       "M_USER_SUSPENDED" -> :user_suspended
       "M_BAD_JSON" -> :bad_json
       "M_NOT_JSON" -> :not_json
+      "M_NOT_FOUND" -> :not_found
       "M_LIMIT_EXCEEDED" -> :limit_exceeded
       "M_UNRECOGNIZED" -> :unrecognized
       "M_UNAUTHORIZED" -> :unauthorized
@@ -239,8 +240,8 @@ defmodule Matrixir.API.Error do
       end
 
     %__MODULE__{
-      error_type: type_from_string(data.errcode),
-      error_string: data.error,
+      error_type: type_from_string(data["errcode"]),
+      error_string: data["error"],
       retry_after: retry_after,
       soft_logout: soft_logout,
       admin_contact: admin_contact

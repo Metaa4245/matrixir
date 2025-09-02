@@ -45,52 +45,16 @@ defmodule Matrixir.API.Client do
     end
   end
 
-  def handle_response({:ok, %Finch.Response{status: 400, body: body}}) do
-    with {:ok, json} <- JSON.decode(body) do
-      {:error, Matrixir.Error.__new__(:matrix, json)}
-    else
-      {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
-    end
-  end
-
-  def handle_response({:ok, %Finch.Response{status: 403, body: body}}) do
-    with {:ok, json} <- JSON.decode(body) do
-      {:error, Matrixir.Error.__new__(:matrix, json)}
-    else
-      {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
-    end
-  end
-
   def handle_response({:ok, %Finch.Response{status: 404, body: ""}}) do
     {:error, Matrixir.Error.__new__(:matrix, 404)}
   end
 
-  def handle_response({:ok, %Finch.Response{status: 404, body: body}}) do
+  def handle_response({:ok, %Finch.Response{status: _, body: body}}) do
     with {:ok, json} <- JSON.decode(body) do
-      {:error, Matrixir.Error.__new__(:matrix, json)}
+      {:error, Matrixir.Error.__new__(:matrix, Matrixir.API.Error.from_json(json))}
     else
       {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
     end
-  end
-
-  def handle_response({:ok, %Finch.Response{status: 405, body: body}}) do
-    with {:ok, json} <- JSON.decode(body) do
-      {:error, Matrixir.Error.__new__(:matrix, json)}
-    else
-      {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
-    end
-  end
-
-  def handle_response({:ok, %Finch.Response{status: 429, body: body}}) do
-    with {:ok, json} <- JSON.decode(body) do
-      {:error, Matrixir.Error.__new__(:matrix, json)}
-    else
-      {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
-    end
-  end
-
-  def handle_response({:ok, %Finch.Response{status: status}}) do
-    {:error, Matrixir.Error.__new__(:http, status)}
   end
 
   def handle_response({:error, reason}) do

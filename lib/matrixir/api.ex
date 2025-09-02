@@ -10,11 +10,22 @@ defmodule Matrixir.API do
     :access_token
   ]
 
+  @typedoc """
+  API wrapper.
+
+  `base_url` represents the matrix homeserver.
+
+  `access_token` represents the client's access token.
+  """
   @type t :: %__MODULE__{
           base_url: String.t(),
           access_token: String.t()
         }
 
+  @typedoc """
+  Represents a response from the Matrix API. This could either be OK with a map
+  or an error `t:Matrixir.Error.t/0`.
+  """
   @type response :: {:ok, map()} | {:error, Matrixir.Error.t()}
 
   @doc """

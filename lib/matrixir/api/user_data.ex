@@ -3,7 +3,14 @@ defmodule Matrixir.API.UserData do
   Matrix user data endpoints.
   """
 
+  @typedoc """
+  Shortening of `t:Matrixir.API.response/0`.
+  """
   @type response :: Matrixir.API.response()
+
+  @typedoc """
+  Shortening of `t:Matrixir.API.t/0`.
+  """
   @type api :: Matrixir.API.t()
 
   @profile_endpoint "/_matrix/client/v3/profile"

@@ -159,7 +159,6 @@ defmodule Matrixir.API.UserData do
     ],
     ok: """
     %{
-    {
       "example_account_data_key" => "example_config_value"
     }
     """,
@@ -204,7 +203,6 @@ defmodule Matrixir.API.UserData do
     ],
     ok: """
     %{
-    {
       "example_account_data_key" => "example_config_value"
     }
     """,

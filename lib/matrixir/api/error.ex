@@ -3,6 +3,7 @@ defmodule Matrixir.API.Error do
   A representation of a Matrix API error.
   """
 
+  @enforce_keys [:error_type, :error_string]
   defstruct [
     :error_type,
     :error_string,
@@ -14,7 +15,13 @@ defmodule Matrixir.API.Error do
     :soft_logout,
 
     # only on M_RESOURCE_LIMIT_EXCEEDED :resource_limit_exceeded
-    :admin_contact
+    :admin_contact,
+
+    # only on M_BAD_STATUS :bad_status
+    # or M_CONNECTION_FAILED :connection_failed
+    # specifically for application services
+    :body,
+    :status
   ]
 
   @typedoc """
@@ -157,22 +164,37 @@ defmodule Matrixir.API.Error do
 
   `retry_after` is a `t:Duration.t/0` returned by Matrix representing a
   duration in milliseconds to retry after specifically for
-  `M_LIMIT_EXCEEDED :limit_exceeded` errors.
+  `M_LIMIT_EXCEEDED :limit_exceeded` errors. This is `nil` if the response does
+  not contain a `retry_after_ms` field.
 
   `soft_logout` is on `M_UNKNOWN_TOKEN :unknown_token` errors signifying that
-  the client should soft logout. A client can be in a “soft logout” state if
+  the client should soft logout. A client can be in a "soft logout" state if
   the server requires re-authentication before continuing, but does not want
-  to invalidate the client’s session.
+  to invalidate the client’s session. This is `nil` if the response does not
+  contain a `soft_logout` field.
 
   `admin_contact` is on `M_RESOURCE_LIMITED_EXCEEDED :resource_limit_exceeded`
-  errors for contacting the admin.
+  errors for contacting the admin. This is `nil` if the response does not
+  contain an `admin_contact` field.
+
+  `body` is on `M_BAD_STATUS :bad_status` or
+  `M_CONNECTION_FAILED :connection_failed` errors for what the application
+  service returned. This is `nil` if the response does not contain a `body`
+  field.
+
+  `status` is on `M_BAD_STATUS :bad_status` or
+  `M_CONNECTION_FAILED :connection_failed` errors for what the application
+  service returned. This is `nil` if the response does not contain a `status`
+  field.
   """
   @type t :: %__MODULE__{
           error_type: error_type(),
           error_string: String.t(),
           retry_after: Duration.t() | nil,
-          soft_logout: boolean(),
-          admin_contact: String.t()
+          soft_logout: boolean() | nil,
+          admin_contact: String.t() | nil,
+          body: String.t() | nil,
+          status: integer() | nil
         }
 
   @doc """
@@ -222,29 +244,45 @@ defmodule Matrixir.API.Error do
   @spec from_json(map()) :: t()
   def from_json(data) do
     retry_after =
-      case data[:retry_after_ms] do
+      case data["retry_after_ms"] do
         nil -> nil
         x -> Duration.new!(microsecond: {x, 3})
       end
 
     soft_logout =
-      case data[:soft_logout] do
-        nil -> false
+      case data["soft_logout"] do
+        nil -> nil
         x -> x
       end
 
     admin_contact =
-      case data[:admin_contact] do
-        nil -> ""
+      case data["admin_contact"] do
+        nil -> nil
         x -> x
       end
+
+    body = case data["body"] do
+      nil -> nil
+      x -> x
+    end
+
+    status = case data["status"] do
+      nil -> nil
+      x -> x
+    end
 
     %__MODULE__{
       error_type: type_from_string(data["errcode"]),
       error_string: data["error"],
+
       retry_after: retry_after,
+
       soft_logout: soft_logout,
-      admin_contact: admin_contact
+
+      admin_contact: admin_contact,
+
+      body: body,
+      status: status
     }
   end
 end

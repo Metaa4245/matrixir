@@ -8,16 +8,15 @@ defmodule Matrixir.API.Client do
   @type url :: Finch.Response.url()
   @type api :: Matrixir.API.t()
 
-  @spec request(api(), method(), url(), body()) :: finch()
+  @spec request(api(), method(), url(), body() | nil) :: finch()
   def request(api, method, route, body \\ nil) do
-    Finch.build(
-      method,
-      "#{api.base_url}#{route}",
-      [
-        {"Authorization", "Bearer #{api.access_token}"}
-      ],
-      body
-    )
+    headers =
+      case api.access_token do
+        nil -> []
+        x -> [{"Authorization", "Bearer #{x}"}]
+      end
+
+    Finch.build(method, "#{api.base_url}#{route}", headers, body)
     |> Finch.request(MatrixirAPIFinch)
     |> handle_response()
   end
@@ -25,6 +24,11 @@ defmodule Matrixir.API.Client do
   @spec get(api(), url()) :: finch()
   def get(api, route) do
     request(api, :get, route)
+  end
+
+  @spec post(api(), url(), body()) :: finch()
+  def post(api, route, body) do
+    request(api, :post, route, body)
   end
 
   @spec put(api(), url(), body()) :: finch()

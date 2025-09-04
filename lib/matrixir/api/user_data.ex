@@ -342,12 +342,12 @@ defmodule Matrixir.API.UserData do
          error_type: :not_json,
          error_string: "Content must be a JSON object."
        """},
-      {"The access token provided is not authorized to modify this user’s account data.",
+      {"The access token provided is not authorized to modify the user's account data.",
        """
          error_type: :forbidden,
          error_string: "Cannot add account data for other users."
        """},
-      {"This `type` of account data is controlled by the server; it cannot be modified by clients.",
+      {"The `type` of account data is controlled by the server; it cannot be modified by clients.",
        """
          error_type: :not_json,
          error_string: "Cannot set example through this API."
@@ -393,12 +393,12 @@ defmodule Matrixir.API.UserData do
          error_type: :not_json, # or :invalid_parameter
          error_string: "Content must be a JSON object."
        """},
-      {"The access token provided is not authorized to modify this user’s account data.",
+      {"The access token provided is not authorized to modify the user's account data.",
        """
          error_type: :forbidden,
          error_string: "Cannot add account data for other users."
        """},
-      {"This `type` of account data is controlled by the server; it cannot be modified by clients.",
+      {"The `type` of account data is controlled by the server; it cannot be modified by clients.",
        """
          error_type: :not_json,
          error_string: "Cannot set example through this API."

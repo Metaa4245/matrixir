@@ -4,7 +4,7 @@ defmodule Matrixir.DocHelpers do
   defp indent(string, n \\ 2) do
     string
     |> String.split("\n")
-    |> Enum.map_join("\n", fn line -> "#{String.duplicate(" ", n)}#{line}" end)
+    |> Enum.map_join("\n", &"#{String.duplicate(" ", n)}#{&1}")
   end
 
   defp exampler(string, trim?) do
@@ -34,11 +34,9 @@ defmodule Matrixir.DocHelpers do
     """
 
     errors_doc =
-      errors
-      |> Enum.map(fn {summary, example} ->
+      Enum.map_join(errors, "\n\n", fn {summary, example} ->
         "- #{summary}\n```elixir\n{:error, %Matrixir.API.Error{\n#{example |> exampler(false)}}}\n```\n"
       end)
-      |> Enum.join("\n\n")
 
     generic_error_doc = """
     - Other error, see `Matrixir.Error`.
@@ -49,12 +47,10 @@ defmodule Matrixir.DocHelpers do
     """
 
     notes_doc =
-      Enum.map(notes, fn n -> "- " <> n end)
-      |> Enum.join("\n")
+      Enum.map_join(notes, "\n", &"- #{&1}")
 
     references_doc =
-      Enum.map(references, fn {label, url} -> "- [#{label}](#{url})" end)
-      |> Enum.join("\n")
+      Enum.map_join(references, "\n", fn {label, url} -> "- [#{label}](#{url})" end)
 
     full_doc = """
     #{summary}

@@ -5,6 +5,7 @@ defmodule Matrixir.API do
   This module delegates functions to category specific API modules.
   """
 
+  @enforce_keys [:base_url]
   defstruct [
     :base_url,
     :access_token
@@ -19,7 +20,7 @@ defmodule Matrixir.API do
   """
   @type t :: %__MODULE__{
           base_url: String.t(),
-          access_token: String.t()
+          access_token: String.t() | nil
         }
 
   @typedoc """
@@ -30,14 +31,14 @@ defmodule Matrixir.API do
 
   @doc """
   Creates a new `Matrixir` API struct.
-  Pass the Matrix homeserver and access_token.
+  Pass the Matrix homeserver. `access_token` is by default `nil`.
 
   Pass the struct to the wrapper functions.
 
   Note: this creates a Finch client under the name `MatrixirAPIFinch` for now.
   """
-  @spec new(String.t(), String.t()) :: t()
-  def new(base_url, access_token) do
+  @spec new(String.t(), String.t() | nil) :: t()
+  def new(base_url, access_token \\ nil) do
     Finch.start_link(name: MatrixirAPIFinch)
 
     %__MODULE__{
@@ -46,6 +47,15 @@ defmodule Matrixir.API do
     }
   end
 
+  defdelegate get_discovery_info(api), to: Matrixir.API.ServerAdmin
+  defdelegate get_support_info(api), to: Matrixir.API.ServerAdmin
+  defdelegate whois(api, user), to: Matrixir.API.ServerAdmin
+  defdelegate get_spec_versions(api), to: Matrixir.API.ServerAdmin
+  defdelegate ping_app_service(api, id, transaction_id \\ nil), to: Matrixir.API.ServerAdmin
+  defdelegate get_room_summary(api, room, via \\ []), to: Matrixir.API.ServerAdmin
+  defdelegate refresh_access_token(api, refresh_token), to: Matrixir.API.ServerAdmin
+  defdelegate get_user_presence(api, user), to: Matrixir.API.Presence
+  defdelegate set_user_presence(api, user, presence, status_message \\ nil), to: Matrixir.API.Presence
   defdelegate get_user_info(api, user), to: Matrixir.API.UserData
   defdelegate get_user_avatar(api, user), to: Matrixir.API.UserData
   defdelegate get_user_display_name(api, user), to: Matrixir.API.UserData

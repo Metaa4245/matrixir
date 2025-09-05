@@ -197,7 +197,7 @@ defmodule Matrixir.API.ServerAdmin do
          error_type: :bad_status,
          error_string: "Ping returned status 401",
 
-         body: "{\"errcode\": \"M_UNKNOWN_TOKEN\"}",
+         body: "{\\"errcode\\": \\"M_UNKNOWN_TOKEN\\"}",
          status: 401
        """},
       {"The connection failed.",

@@ -7,10 +7,21 @@ defmodule Matrixir.MixProject do
       version: "0.1.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
+      description: "Elixir library for Matrix.",
+      package: package(),
       deps: deps(),
       name: "Matrixir",
       source_url: "https://github.com/Metaa4245/matrixir",
       docs: &docs/0
+    ]
+  end
+
+  def package do
+    [
+      name: "matrixir",
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE*),
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/Metaa4245/matrixir"}
     ]
   end
 

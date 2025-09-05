@@ -47,8 +47,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication not required"
+      "Authentication not required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground", "https://playground.matrix.org/#get-/_matrix/client/v3/profile/-userId-"},
@@ -89,8 +89,7 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication not required"
+      "Authentication not required"."Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -132,8 +131,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication not required"
+      "Authentication not required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -175,8 +174,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -224,8 +223,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -263,8 +262,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Rate-limited"
     ],
     references: [
       {"Playground",
@@ -303,8 +302,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Rate-limited"
     ],
     references: [
       {"Playground",
@@ -354,8 +353,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -405,8 +404,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -448,8 +447,8 @@ defmodule Matrixir.API.UserData do
     """,
     errors: [],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -476,8 +475,8 @@ defmodule Matrixir.API.UserData do
     ok: "%{}",
     errors: [],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -513,8 +512,8 @@ defmodule Matrixir.API.UserData do
     ok: "%{}",
     errors: [],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",

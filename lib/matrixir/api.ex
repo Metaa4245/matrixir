@@ -55,7 +55,10 @@ defmodule Matrixir.API do
   defdelegate get_room_summary(api, room, via \\ []), to: Matrixir.API.ServerAdmin
   defdelegate refresh_access_token(api, refresh_token), to: Matrixir.API.ServerAdmin
   defdelegate get_user_presence(api, user), to: Matrixir.API.Presence
-  defdelegate set_user_presence(api, user, presence, status_message \\ nil), to: Matrixir.API.Presence
+
+  defdelegate set_user_presence(api, user, presence, status_message \\ nil),
+    to: Matrixir.API.Presence
+
   defdelegate get_user_info(api, user), to: Matrixir.API.UserData
   defdelegate get_user_avatar(api, user), to: Matrixir.API.UserData
   defdelegate get_user_display_name(api, user), to: Matrixir.API.UserData

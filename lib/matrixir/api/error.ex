@@ -261,26 +261,24 @@ defmodule Matrixir.API.Error do
         x -> x
       end
 
-    body = case data["body"] do
-      nil -> nil
-      x -> x
-    end
+    body =
+      case data["body"] do
+        nil -> nil
+        x -> x
+      end
 
-    status = case data["status"] do
-      nil -> nil
-      x -> x
-    end
+    status =
+      case data["status"] do
+        nil -> nil
+        x -> x
+      end
 
     %__MODULE__{
       error_type: type_from_string(data["errcode"]),
       error_string: data["error"],
-
       retry_after: retry_after,
-
       soft_logout: soft_logout,
-
       admin_contact: admin_contact,
-
       body: body,
       status: status
     }

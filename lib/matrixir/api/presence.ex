@@ -45,8 +45,8 @@ defmodule Matrixir.API.Presence do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -78,8 +78,8 @@ defmodule Matrixir.API.Presence do
        """}
     ],
     notes: [
-      "Ratelimited",
-      "Requires authentication"
+      "Authentication required",
+      "Rate-limited"
     ],
     references: [
       {"Playground",

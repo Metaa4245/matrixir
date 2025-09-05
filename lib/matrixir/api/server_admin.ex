@@ -34,8 +34,8 @@ defmodule Matrixir.API.ServerAdmin do
       {"No server discovery information available. (404 Not Found)", ""}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication not required"
+      "Authentication not required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground", "https://playground.matrix.org/#get-/.well-known/matrix/client"},
@@ -71,8 +71,8 @@ defmodule Matrixir.API.ServerAdmin do
       {"No server support information available. (404 Not Found)", ""}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication not required"
+      "Authentication not required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground", "https://playground.matrix.org/#get-/.well-known/matrix/support"},
@@ -112,8 +112,8 @@ defmodule Matrixir.API.ServerAdmin do
     """,
     errors: [],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -145,8 +145,8 @@ defmodule Matrixir.API.ServerAdmin do
     """,
     errors: [],
     notes: [
-      "Not ratelimited",
-      "Authentication optional"
+      "Authentication optional",
+      "Not rate-limited"
     ],
     references: [
       {"Playground", "https://playground.matrix.org/#get-/_matrix/client/versions"},
@@ -208,8 +208,8 @@ defmodule Matrixir.API.ServerAdmin do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication required"
+      "Authentication required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -276,8 +276,8 @@ defmodule Matrixir.API.ServerAdmin do
        """}
     ],
     notes: [
-      "Not ratelimited",
-      "Authentication may be required"
+      "Authentication may be required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",
@@ -325,8 +325,8 @@ defmodule Matrixir.API.ServerAdmin do
        """}
     ],
     notes: [
-      "Ratelimited",
-      "Authentication provided through `refresh_token`"
+      "Authentication provided through `refresh_token`",
+      "Rate-limited"
     ],
     references: [
       {"Playground", "https://playground.matrix.org/#post-/_matrix/client/v3/refresh"},

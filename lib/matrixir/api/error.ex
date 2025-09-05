@@ -259,6 +259,5 @@ defmodule Matrixir.API.Error do
       body: data["body"],
       status: data["status"]
     }
-    |> Map.reject(&is_nil/1)
   end
 end

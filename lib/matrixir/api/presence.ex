@@ -99,7 +99,7 @@ defmodule Matrixir.API.Presence do
     Client.put(
       api,
       "#{@presence_endpoint}/#{user}/status",
-      JSON.encode!(
+      JSON.encode_to_iodata!(
         %{
           "presence" => presence,
           "status_msg" => status_message

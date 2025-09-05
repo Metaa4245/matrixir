@@ -247,7 +247,15 @@ defmodule Matrixir.API.Error do
     retry_after =
       case data["retry_after_ms"] do
         nil -> nil
-        x -> Duration.new!(microsecond: {x, 3})
+        x -> (
+          seconds = div(x, 1000)
+          milliseconds = rem(x, 1000)
+
+          Duration.new!(
+            second: seconds,
+            microsecond: {milliseconds * 1000, 6}
+          )
+        )
       end
 
     %__MODULE__{

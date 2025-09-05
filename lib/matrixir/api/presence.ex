@@ -104,7 +104,7 @@ defmodule Matrixir.API.Presence do
           "presence" => presence,
           "status_msg" => status_message
         }
-        |> Map.reject(fn x -> is_nil(x) end)
+        |> Map.reject(&is_nil/1)
       )
     )
   end

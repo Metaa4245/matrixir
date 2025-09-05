@@ -89,7 +89,8 @@ defmodule Matrixir.API.UserData do
        """}
     ],
     notes: [
-      "Authentication not required"."Not rate-limited"
+      "Authentication not required",
+      "Not rate-limited"
     ],
     references: [
       {"Playground",

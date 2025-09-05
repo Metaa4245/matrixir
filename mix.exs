@@ -30,8 +30,9 @@ defmodule Matrixir.MixProject do
 
   def deps do
     [
+      {:credo, "~> 1.7", only: :dev, runtime: false, warn_if_outdated: true},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false, warn_if_outdated: true},
-      {:finch, "~> 0.20"}
+      {:finch, "~> 0.20", warn_if_outdated: true}
     ]
   end
 end

@@ -197,48 +197,49 @@ defmodule Matrixir.API.Error do
           status: integer() | nil
         }
 
+  @error_to_atom %{
+    "M_FORBIDDEN" => :forbidden,
+    "M_UNKNOWN_TOKEN" => :unknown_token,
+    "M_MISSING_TOKEN" => :missing_token,
+    "M_USER_LOCKED" => :user_locked,
+    "M_USER_SUSPENDED" => :user_suspended,
+    "M_BAD_JSON" => :bad_json,
+    "M_NOT_JSON" => :not_json,
+    "M_NOT_FOUND" => :not_found,
+    "M_LIMIT_EXCEEDED" => :limit_exceeded,
+    "M_UNRECOGNIZED" => :unrecognized,
+    "M_UNAUTHORIZED" => :unauthorized,
+    "M_USER_DEACTIVATED" => :user_deactivated,
+    "M_USER_IN_USE" => :user_in_use,
+    "M_INVALID_USERNAME" => :invalid_username,
+    "M_ROOM_IN_USE" => :room_in_use,
+    "M_INVALID_ROOM_STATE" => :invalid_room_state,
+    "M_THREEPID_IN_USE" => :threepid_in_use,
+    "M_THREEPID_NOT_FOUND" => :threepid_not_found,
+    "M_THREEPID_AUTH_FAILED" => :threepid_auth_failed,
+    "M_THREEPID_DENIED" => :threepid_denied,
+    "M_SERVER_NOT_TRUSTED" => :server_not_trusted,
+    "M_UNSUPPORTED_ROOM_VERSION" => :unsupported_room_version,
+    "M_INCOMPATIBLE_ROOM_VERSION" => :incompatible_room_version,
+    "M_BAD_STATE" => :bad_state,
+    "M_GUEST_ACCESS_FORBIDDEN" => :guest_access_forbidden,
+    "M_CAPTCHA_NEEDED" => :captcha_needed,
+    "M_CAPTCHA_INVALID" => :captcha_invalid,
+    "M_MISSING_PARAM" => :missing_parameter,
+    "M_INVALID_PARAM" => :invalid_parameter,
+    "M_TOO_LARGE" => :too_large,
+    "M_EXCLUSIVE" => :exclusive,
+    "M_RESOURCE_LIMIT_EXCEEDED" => :resource_limited_exceeded,
+    "M_CANNOT_LEAVE_SERVER_NOTICE_ROOM" => :cannot_leave_server_notice_room,
+    "M_THREEPID_MEDIUM_NOT_SUPPORTED" => :threepid_medium_not_supported
+  }
+
   @doc """
   Convert a `t:String.t/0` into an `t:error_type/0`.
   """
   @spec type_from_string(String.t()) :: error_type()
   def type_from_string(string) do
-    case string do
-      "M_FORBIDDEN" -> :forbidden
-      "M_UNKNOWN_TOKEN" -> :unknown_token
-      "M_MISSING_TOKEN" -> :missing_token
-      "M_USER_LOCKED" -> :user_locked
-      "M_USER_SUSPENDED" -> :user_suspended
-      "M_BAD_JSON" -> :bad_json
-      "M_NOT_JSON" -> :not_json
-      "M_NOT_FOUND" -> :not_found
-      "M_LIMIT_EXCEEDED" -> :limit_exceeded
-      "M_UNRECOGNIZED" -> :unrecognized
-      "M_UNAUTHORIZED" -> :unauthorized
-      "M_USER_DEACTIVATED" -> :user_deactivated
-      "M_USER_IN_USE" -> :user_in_use
-      "M_INVALID_USERNAME" -> :invalid_username
-      "M_ROOM_IN_USE" -> :room_in_use
-      "M_INVALID_ROOM_STATE" -> :invalid_room_state
-      "M_THREEPID_IN_USE" -> :threepid_in_use
-      "M_THREEPID_NOT_FOUND" -> :threepid_not_found
-      "M_THREEPID_AUTH_FAILED" -> :threepid_auth_failed
-      "M_THREEPID_DENIED" -> :threepid_denied
-      "M_SERVER_NOT_TRUSTED" -> :server_not_trusted
-      "M_UNSUPPORTED_ROOM_VERSION" -> :unsupported_room_version
-      "M_INCOMPATIBLE_ROOM_VERSION" -> :incompatible_room_version
-      "M_BAD_STATE" -> :bad_state
-      "M_GUEST_ACCESS_FORBIDDEN" -> :guest_access_forbidden
-      "M_CAPTCHA_NEEDED" -> :captcha_needed
-      "M_CAPTCHA_INVALID" -> :captcha_invalid
-      "M_MISSING_PARAM" -> :missing_parameter
-      "M_INVALID_PARAM" -> :invalid_parameter
-      "M_TOO_LARGE" -> :too_large
-      "M_EXCLUSIVE" -> :exclusive
-      "M_RESOURCE_LIMIT_EXCEEDED" -> :resource_limited_exceeded
-      "M_CANNOT_LEAVE_SERVER_NOTICE_ROOM" -> :cannot_leave_server_notice_room
-      "M_THREEPID_MEDIUM_NOT_SUPPORTED" -> :threepid_medium_not_supported
-      _ -> :unknown
-    end
+    Map.get(@error_to_atom, string, :unknown)
   end
 
   @spec from_json(map()) :: t()

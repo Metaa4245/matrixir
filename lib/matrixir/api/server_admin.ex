@@ -1,4 +1,8 @@
 defmodule Matrixir.API.ServerAdmin do
+  @moduledoc """
+  Matrix server admin endpoints.
+  """
+
   @typedoc """
   Alias for `t:Matrixir.API.response/0`.
   """

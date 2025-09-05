@@ -8,7 +8,6 @@ defmodule Matrixir.MixProject do
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-
       name: "Matrixir",
       source_url: "https://github.com/Metaa4245/matrixir",
       docs: &docs/0

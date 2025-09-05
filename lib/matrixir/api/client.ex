@@ -42,17 +42,15 @@ defmodule Matrixir.API.Client do
   end
 
   def handle_response({:ok, %Finch.Response{status: 200, body: body}}) do
-    with {:ok, json} <- JSON.decode(body) do
-      {:ok, json}
-    else
+    case JSON.decode(body) do
+      {:ok, json} -> {:ok, json}
       {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
     end
   end
 
   def handle_response({:ok, %Finch.Response{status: _, body: body}}) do
-    with {:ok, json} <- JSON.decode(body) do
-      {:error, Matrixir.Error.__new__(:matrix, Matrixir.API.Error.from_json(json))}
-    else
+    case JSON.decode(body) do
+      {:ok, json} -> {:error, Matrixir.Error.__new__(:matrix, Matrixir.API.Error.from_json(json))}
       {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
     end
   end

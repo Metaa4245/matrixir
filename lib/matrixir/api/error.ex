@@ -47,7 +47,7 @@ defmodule Matrixir.API.Error do
   `M_NOT_JSON :not_json` Request did not contain valid JSON.
 
   `M_LIMIT_EXCEEDED :limit_exceeded` Too many requests have been sent in a
-  short period of time. Wait a while then try again. (Ratelimited).
+  short period of time. Wait a while then try again. (Rate-limited).
 
   `M_UNRECOGNIZED :unrecognized` The server did not understand the request.
 

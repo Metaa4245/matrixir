@@ -26,10 +26,10 @@ defmodule Matrixir.API.Presence do
     ],
     ok: """
     %{
-      currently_active: false,  # can be nil
-      last_active_ago: 80085,   # can be nil, in milliseconds
-      presence: "unavailable",  # cannot be nil, "unavailable" | "offline" | "online"
-      status_msg: "example"     # can be nil
+      "currently_active" => false,  # can be nil
+      "last_active_ago" => 80085,   # can be nil, in milliseconds
+      "presence" => "unavailable",  # cannot be nil, "unavailable" | "offline" | "online"
+      "status_msg" => "example"     # can be nil
     }
     """,
     errors: [

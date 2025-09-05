@@ -20,7 +20,10 @@ defmodule Matrixir.DocHelpers do
     references = Keyword.get(opts, :references, [])
 
     parameters_doc =
-      Enum.map(parameters, fn {name, desc} -> "- `#{name}` - #{desc}" end)
+      [
+        "- `api` - `t:Matrixir.API.t/0` struct"
+        | Enum.map(parameters, fn {name, desc} -> "- `#{name}` - #{desc}" end)
+      ]
       |> Enum.join("\n")
 
     ok_doc = """

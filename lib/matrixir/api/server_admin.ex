@@ -268,7 +268,7 @@ defmodule Matrixir.API.ServerAdmin do
       "room_id" => "!example@homeserver.com",
       "room_type" => "m.space",
       "room_version" => "12",
-      "topic" => "Example",    # omitted if no topic exists
+      "topic" => "Example",     # omitted if no topic exists
       "world_readable" => true
     }
     """,

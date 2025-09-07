@@ -10,6 +10,8 @@ defmodule Matrixir.Error do
   ]
 
   @typedoc """
+  The type of error.
+
   If the error type is of `:http`, then the error occurred in the Finch request.
 
   If the error type is of `:decode`, then the error occurred in the JSON decode.

@@ -32,6 +32,7 @@ defmodule Matrixir.API.ServerAdmin do
       "m.identity_server" => %{
         "base_url" => "https://identity.homeserver.com"
       }
+      # additional keys
     }
     """,
     errors: [
@@ -59,16 +60,16 @@ defmodule Matrixir.API.ServerAdmin do
     %{
       "contacts" => [
         %{
-          "email_address" => "admin@homeserver.com",
-          "matrix_id" => "@admin:homeserver.com",
+          "email_address" => "admin@homeserver.com",          # optional
+          "matrix_id" => "@admin:homeserver.com",             # optional
           "role" => "m.role.admin"
         },
         %{
-          "email_address" => "security@homeserver.com",
+          "email_address" => "security@homeserver.com",       # optional
           "role" => "m.role.security"
         }
       ],
-      "support_page" => "https://homeserver.com/support.html"
+      "support_page" => "https://homeserver.com/support.html" # optional
     }
     """,
     errors: [
@@ -102,16 +103,16 @@ defmodule Matrixir.API.ServerAdmin do
             %{
               "connections": [
                 %{
-                  "ip" => "127.0.0.1",
-                  "last_seen" => 1411996332123,
-                  "user_agent" => "example"
+                  "ip" => "127.0.0.1",          # optional
+                  "last_seen" => 1411996332123, # optional
+                  "user_agent" => "example"     # optional
                 }
               ]
             }
           ]
         }
       },
-      "user_id" => "@example:homeserver.com"
+      "user_id" => "@example:homeserver.com"    # optional
     }
     """,
     errors: [],
@@ -138,8 +139,9 @@ defmodule Matrixir.API.ServerAdmin do
     parameters: [],
     ok: """
     %{
-      "unstable_features" => %{
+      "unstable_features" => %{ # optional
         "org.example.feature" => true
+        # any other keys here
       },
       "versions" => [
         "r0.0.1",
@@ -258,17 +260,18 @@ defmodule Matrixir.API.ServerAdmin do
     ],
     ok: """
     %{
-      "avatar_url" => "mxc://homeserver.com/example",
-      "encryption" => "m.megolm.v1.aes-sha2",
+      "avatar_url" => "mxc://homeserver.com/example", # optional
+      # optional, canonical_alias
+      "encryption" => "m.megolm.v1.aes-sha2",         # optional, "m.megolm.v1.aes-sha2"
       "guest_can_join" => false,
-      "join_rule" => "public",  # if not present, assumed "public"
-      "membership" => "invite", # "invite" | "join" | "knock" | "leave" | "ban"
-      "name" => "Example",
+      "join_rule" => "public",                        # optional, assumed "public" if omitted
+      "membership" => "invite",                       # "invite" | "join" | "knock" | "leave" | "ban"
+      "name" => "Example",                            # optional
       "num_joined_numbers" => 1,
       "room_id" => "!example@homeserver.com",
-      "room_type" => "m.space",
+      "room_type" => "m.space",                       # optional
       "room_version" => "12",
-      "topic" => "Example",     # omitted if no topic exists
+      "topic" => "Example",                           # optional
       "world_readable" => true
     }
     """,
@@ -315,8 +318,8 @@ defmodule Matrixir.API.ServerAdmin do
     ok: """
     %{
       "access_token" => "new access token",
-      "expires_in_ms" => 60000,
-      "refresh_token" => "new refresh token"
+      "expires_in_ms" => 60000,              # optional
+      "refresh_token" => "new refresh token" # optional
     }
     """,
     errors: [

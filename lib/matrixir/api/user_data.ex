@@ -30,8 +30,8 @@ defmodule Matrixir.API.UserData do
     ],
     ok: """
     %{
-      "avatar_url" => "mxc://homeserver.com/id",
-      "displayname" => "Example"
+      "avatar_url" => "mxc://homeserver.com/id", # optional
+      "displayname" => "Example"                 # optional
     }
     """,
     errors: [
@@ -73,7 +73,7 @@ defmodule Matrixir.API.UserData do
     ],
     ok: """
     %{
-      "avatar_url" => "mxc://homeserver.com/id"
+      "avatar_url" => "mxc://homeserver.com/id" # optional
     }
     """,
     errors: [
@@ -116,7 +116,7 @@ defmodule Matrixir.API.UserData do
     ],
     ok: """
     %{
-      "displayname" => "Example"
+      "displayname" => "Example" # optional
     }
     """,
     errors: [
@@ -439,7 +439,7 @@ defmodule Matrixir.API.UserData do
     ],
     ok: """
     %{
-      "tags" => %{
+      "tags" => %{ # optional
         "example" => {
           "order" => 0.1
         }

@@ -71,4 +71,5 @@ defmodule Matrixir.API do
   defdelegate get_room_user_tags(api, user, room), to: Matrixir.API.UserData
   defdelegate add_room_user_tag(api, user, room, tag, data), to: Matrixir.API.UserData
   defdelegate remove_room_user_tag(api, user, room, tag), to: Matrixir.API.UserData
+  defdelegate upgrade_room(api, room, version), to: Matrixir.API.RoomUpgrade
 end

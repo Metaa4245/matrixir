@@ -34,12 +34,12 @@ defmodule Matrixir.API.Presence do
       {"You are not allowed to see the user's presence status.",
        """
          error_type: :forbidden,
-         error_string: "You are not allowed to see their presence"
+         error_string: "You are not allowed to see their presence" # optional
        """},
       {"There is no presence state for the user. The user may not exist or isn't exposing presence information to you.",
        """
          error_type: :unknown,
-         error_string: "An unknown error occurred"
+         error_string: "An unknown error occurred" # optional
        """}
     ],
     notes: [
@@ -70,7 +70,7 @@ defmodule Matrixir.API.Presence do
       {"The request was rate-limited.",
        """
          error_type: :limit_exceeded,
-         error_string: "Too many requests",
+         error_string: "Too many requests", # optional
          retry_after: Duration
        """}
     ],

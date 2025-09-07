@@ -38,12 +38,12 @@ defmodule Matrixir.API.UserData do
       {"The server is unwilling to disclose whether the user exists and/or has profile information.",
        """
          error_type: :forbidden,
-         error_string: "Profile lookup is disabled on this homeserver"
+         error_string: "Profile lookup is disabled on this homeserver" # optional
        """},
       {"There is no profile information for the user or the user does not exist.",
        """
          error_type: :not_found,
-         error_string: "Profile not found"
+         error_string: "Profile not found" # optional
        """}
     ],
     notes: [
@@ -80,12 +80,12 @@ defmodule Matrixir.API.UserData do
       {"The server is unwilling to disclose whether the user exists and/or has an avatar URL.",
        """
          error_type: :forbidden,
-         error_string: "Profile lookup is disabled on this homeserver"
+         error_string: "Profile lookup is disabled on this homeserver" # optional
        """},
       {"There is no avatar URL for the user or the user does not exist.",
        """
          error_type: :not_found,
-         error_string: "Profile not found"
+         error_string: "Profile not found" # optional
        """}
     ],
     notes: [
@@ -123,12 +123,12 @@ defmodule Matrixir.API.UserData do
       {"The server is unwilling to disclose whether the user exists and/or has a display name.",
        """
          error_type: :forbidden,
-         error_string: "Profile lookup is disabled on this homeserver"
+         error_string: "Profile lookup is disabled on this homeserver" # optional
        """},
       {"There is no display name for the user or the user does not exist.",
        """
          error_type: :not_found,
-         error_string: "Profile not found"
+         error_string: "Profile not found" # optional
        """}
     ],
     notes: [
@@ -166,12 +166,12 @@ defmodule Matrixir.API.UserData do
       {"The access token provided is not authorized to retrieve the user's account data.",
        """
          error_type: :forbidden,
-         error_string: "Cannot add account data for other users."
+         error_string: "Cannot add account data for other users." # optional
        """},
       {"No account data has been provided for the user with the given `type`.",
        """
          error_type: :not_found,
-         error_string: "Account data not found."
+         error_string: "Account data not found." # optional
        """}
     ],
     notes: [
@@ -210,17 +210,17 @@ defmodule Matrixir.API.UserData do
       {"The `room` provided is not a valid room ID.",
        """
          error_type: :invalid_parameter,
-         error_string: "@example:homeserver.com is not a valid room ID."
+         error_string: "@example:homeserver.com is not a valid room ID." # optional
        """},
       {"The access token provided is not authorized to retrieve the user's account data.",
        """
          error_type: :forbidden,
-         error_string: "Cannot add account data for other users."
+         error_string: "Cannot add account data for other users." # optional
        """},
       {"No account data has been provided for the user with the given `type`.",
        """
          error_type: :not_found,
-         error_string: "Account data not found."
+         error_string: "Account data not found." # optional
        """}
     ],
     notes: [
@@ -258,7 +258,7 @@ defmodule Matrixir.API.UserData do
       {"The request was rate-limited.",
        """
          error_type: :limit_exceeded,
-         error_string: "Too many requests",
+         error_string: "Too many requests", # optional
          retry_after: Duration
        """}
     ],
@@ -298,7 +298,8 @@ defmodule Matrixir.API.UserData do
       {"The request was rate-limited.",
        """
          error_type: :limit_exceeded,
-         error_string: "Too many requests",
+         error_string: "Too many requests", # optional
+
          retry_after: Duration
        """}
     ],
@@ -340,17 +341,17 @@ defmodule Matrixir.API.UserData do
       {"The request body is not a JSON object.",
        """
          error_type: :not_json,
-         error_string: "Content must be a JSON object."
+         error_string: "Content must be a JSON object." # optional
        """},
       {"The access token provided is not authorized to modify the user's account data.",
        """
          error_type: :forbidden,
-         error_string: "Cannot add account data for other users."
+         error_string: "Cannot add account data for other users." # optional
        """},
       {"The `type` of account data is controlled by the server; it cannot be modified by clients.",
        """
          error_type: :not_json,
-         error_string: "Cannot set example through this API."
+         error_string: "Cannot set example through this API." # optional
        """}
     ],
     notes: [
@@ -388,20 +389,25 @@ defmodule Matrixir.API.UserData do
     ],
     ok: "%{}",
     errors: [
-      {"The request body is not a JSON object, or the room is not a valid room.",
+      {"The request body is not a JSON object",
        """
-         error_type: :not_json, # or :invalid_parameter
-         error_string: "Content must be a JSON object."
+         error_type: :not_json,
+         error_string: "Content must be a JSON object." # optional
+       """},
+      {"The room is not a valid room.",
+       """
+          error_type: :invalid_parameter
+          # i don't know what the error_string here is
        """},
       {"The access token provided is not authorized to modify the user's account data.",
        """
          error_type: :forbidden,
-         error_string: "Cannot add account data for other users."
+         error_string: "Cannot add account data for other users." # optional
        """},
       {"The `type` of account data is controlled by the server; it cannot be modified by clients.",
        """
          error_type: :not_json,
-         error_string: "Cannot set example through this API."
+         error_string: "Cannot set example through this API." # optional
        """}
     ],
     notes: [

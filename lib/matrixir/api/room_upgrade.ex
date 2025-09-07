@@ -32,12 +32,12 @@ defmodule Matrixir.API.RoomUpgrade do
       {"The room version requested is not supported by the homeserver.",
        """
          error_type: :unsupported_room_version,
-         error_string: "This server does not support that room version"
+         error_string: "This server does not support that room version" # optional
        """},
       {"The user is not permitted to upgrade the room.",
        """
          error_type: :forbidden,
-         error_string: "You cannot upgrade this room"
+         error_string: "You cannot upgrade this room" # optional
        """}
     ],
     notes: [

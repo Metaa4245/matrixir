@@ -189,17 +189,17 @@ defmodule Matrixir.API.ServerAdmin do
       {"The application service doesn't have a URL configured.",
        """
          error_type: :url_not_set,
-         error_string: "Application service doesn't have a URL configured"
+         error_string: "Application service doesn't have a URL configured" # optional
        """},
       {"The access token used to authenticate the request doesn't belong to an application service, or belongs to a different application service than the one in the path.",
        """
          error_type: :forbidden,
-         error_string: "Provided access token is not the appservice's as_token"
+         error_string: "Provided access token is not the appservice's as_token" # optional
        """},
       {"The application service returned a bad status.",
        """
          error_type: :bad_status,
-         error_string: "Ping returned status 401",
+         error_string: "Ping returned status 401", # optional
 
          body: "{\\"errcode\\": \\"M_UNKNOWN_TOKEN\\"}",
          status: 401
@@ -207,12 +207,12 @@ defmodule Matrixir.API.ServerAdmin do
       {"The connection failed.",
        """
          error_type: :connection_failed,
-         error_string: "Ping returned status 401" # speculative
+         error_string: "Ping returned status 401" # speculative, optional
        """},
       {"The connection to the application service timed out.",
        """
          error_type: :connection_timeout,
-         error_string: "Connection to application service timed out"
+         error_string: "Connection to application service timed out" # optional
        """}
     ],
     notes: [
@@ -282,7 +282,7 @@ defmodule Matrixir.API.ServerAdmin do
       {"The room could not be found.",
        """
          error_type: :not_found,
-         error_string: "Room not found."
+         error_string: "Room not found." # optional
        """}
     ],
     notes: [
@@ -329,14 +329,14 @@ defmodule Matrixir.API.ServerAdmin do
       {"The provided token was unknown, or has already been used.",
        """
          error_type: :unknown_token,
-         error_string: "Soft logged out",
+         error_string: "Soft logged out", # optional
 
          soft_logout: true
        """},
       {"The request was rate-limited.",
        """
          error_type: :limit_exceeded,
-         error_string: "Too many requests",
+         error_string: "Too many requests", # optional
 
          retry_after: Duration
        """}

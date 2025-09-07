@@ -161,6 +161,7 @@ defmodule Matrixir.API.Error do
   `error_type` is an `t:error_type/0`.
 
   `error_string` is the human readable version of the error returned by Matrix.
+  Error strings are optional.
 
   `retry_after` is a `t:Duration.t/0` returned by Matrix representing a
   duration in milliseconds to retry after specifically for
@@ -189,7 +190,7 @@ defmodule Matrixir.API.Error do
   """
   @type t :: %__MODULE__{
           error_type: error_type(),
-          error_string: String.t(),
+          error_string: String.t() | nil,
           retry_after: Duration.t() | nil,
           soft_logout: boolean() | nil,
           admin_contact: String.t() | nil,

@@ -247,8 +247,10 @@ defmodule Matrixir.API.Error do
   def from_json(data) do
     retry_after =
       case data["retry_after_ms"] do
-        nil -> nil
-        x -> (
+        nil ->
+          nil
+
+        x ->
           seconds = div(x, 1000)
           milliseconds = rem(x, 1000)
 
@@ -256,7 +258,6 @@ defmodule Matrixir.API.Error do
             second: seconds,
             microsecond: {milliseconds * 1000, 6}
           )
-        )
       end
 
     %__MODULE__{

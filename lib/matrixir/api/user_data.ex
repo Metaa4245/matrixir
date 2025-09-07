@@ -259,6 +259,7 @@ defmodule Matrixir.API.UserData do
        """
          error_type: :limit_exceeded,
          error_string: "Too many requests", # optional
+
          retry_after: Duration
        """}
     ],

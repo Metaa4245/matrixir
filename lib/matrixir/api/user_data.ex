@@ -16,8 +16,8 @@ defmodule Matrixir.API.UserData do
   @profile_endpoint "/_matrix/client/v3/profile"
   @user_endpoint "/_matrix/client/v3/user"
 
-  alias Matrixir.API.Client
   import Matrixir.DocHelpers
+  alias Matrixir.API.Client
 
   api_doc("
   Fetches a user's profile information, including avatar URL and display name.

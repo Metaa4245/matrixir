@@ -15,8 +15,8 @@ defmodule Matrixir.API.Presence do
 
   @presence_endpoint "/_matrix/client/v3/presence"
 
-  alias Matrixir.API.Client
   import Matrixir.DocHelpers
+  alias Matrixir.API.Client
 
   api_doc("Get the user's presence state.",
     parameters: [

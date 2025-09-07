@@ -431,8 +431,7 @@ defmodule Matrixir.API.UserData do
     )
   end
 
-  api_doc("
-  Fetches the tags set by a user on a room.",
+  api_doc("Fetches the tags set by a user on a room.",
     parameters: [
       {"user", "Matrix user ID (e.g. `@example:homeserver.com`)"},
       {"room", "Matrix room ID (e.g. `!example:homeserver.com`)"}
@@ -464,9 +463,7 @@ defmodule Matrixir.API.UserData do
     Client.get(api, "#{@user_endpoint}/#{user}/rooms/#{room}/tags")
   end
 
-  api_doc("
-  Adds a tag to a room.
-  ",
+  api_doc("Adds a tag to a room.",
     parameters: [
       {"user", "Matrix user ID (e.g. `@example:homeserver.com`)"},
       {"room", "Matrix room ID (e.g. `!example:homeserver.com`)"},
@@ -502,9 +499,7 @@ defmodule Matrixir.API.UserData do
     )
   end
 
-  api_doc("
-  Removes a tag from the room.
-  ",
+  api_doc("Removes a tag from the room.",
     parameters: [
       {"user", "Matrix user ID (e.g. `@example:homeserver.com`)"},
       {"room", "Matrix room ID (e.g. `!example:homeserver.com`)"},

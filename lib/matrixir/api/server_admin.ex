@@ -133,9 +133,11 @@ defmodule Matrixir.API.ServerAdmin do
     Client.get(api, "#{@v3_endpoint}/admin/whois/#{user}")
   end
 
-  api_doc("Fetches the versions of the specification supported by the server.
+  api_doc("
+  Fetches the versions of the specification supported by the server.
 
-  This can behave differently when authentication is provided.",
+  This can behave differently when authentication is provided.
+  ",
     parameters: [],
     ok: """
     %{
@@ -237,7 +239,8 @@ defmodule Matrixir.API.ServerAdmin do
     )
   end
 
-  api_doc("Fetches a room summary.
+  api_doc("
+  Fetches a room summary.
 
   Requests for rooms where the user's membership is `invite` or `knock` might
   yield outdated, partial or even no data since the server may not have access

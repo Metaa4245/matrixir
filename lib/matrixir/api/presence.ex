@@ -18,9 +18,7 @@ defmodule Matrixir.API.Presence do
   alias Matrixir.API.Client
   import Matrixir.DocHelpers
 
-  api_doc("
-  Get the user's presence state.
-  ",
+  api_doc("Get the user's presence state.",
     parameters: [
       {"user", "Matrix user ID (e.g. `@example:homeserver.com`)"}
     ],
@@ -61,8 +59,7 @@ defmodule Matrixir.API.Presence do
     Client.get(api, "#{@presence_endpoint}/#{user}/status")
   end
 
-  api_doc("
-  Sets the user's presence state.",
+  api_doc("Sets the user's presence state.",
     parameters: [
       {"user", "Matrix user ID (e.g. `@example:homeserver.com`)"},
       {"presence", "Presence (\"unavailable\" | \"offline\" | \"offline\")"},

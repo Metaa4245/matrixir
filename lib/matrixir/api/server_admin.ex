@@ -293,12 +293,19 @@ defmodule Matrixir.API.ServerAdmin do
 
   @spec get_room_summary(api(), String.t(), list(String.t())) :: response()
   def get_room_summary(api, room, via \\ []) do
-    query = Enum.map_join(via, &"&via=#{&1}")
+    query =
+      Enum.map_join(
+        via,
+        "&",
+        &"via=#{URI.encode_www_form(&1)}"
+      )
 
-    Client.get(
-      api,
-      "#{@v1_endpoint}/room_summary/#{room}?via=#{api.base_url}#{query}"
-    )
+    uri =
+      URI.parse("#{@v1_endpoint}/room_summary/#{room}")
+      |> URI.append_query(query)
+      |> URI.to_string()
+
+    Client.get(api, uri)
   end
 
   api_doc("Refreshes an access token.",

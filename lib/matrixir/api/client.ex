@@ -8,17 +8,47 @@ defmodule Matrixir.API.Client do
   @type url :: Finch.Request.url()
   @type api :: Matrixir.API.t()
 
-  @spec request(api(), method(), url(), body() | nil) :: finch()
-  def request(api, method, route, body \\ nil) do
+  @spec request(api(), method(), url(), body() | nil, boolean()) :: finch()
+  def request(
+        api,
+        method,
+        route,
+        body \\ nil,
+        json? \\ true,
+        where \\ nil
+      ) do
+    where = where || api.base_url
+
+    {url, where} =
+      case URI.parse(route) do
+        %URI{scheme: nil} ->
+          {where <> route, where}
+
+        %URI{scheme: scheme} = uri when scheme in ["http", "https"] ->
+          {route, "#{uri.scheme}://#{uri.host}"}
+      end
+
     headers =
       case api.access_token do
         nil -> []
         x -> [{"Authorization", "Bearer #{x}"}]
       end
 
-    Finch.build(method, "#{api.base_url}#{route}", headers, body)
-    |> Finch.request(MatrixirAPIFinch)
-    |> handle_response()
+    response =
+      method
+      |> Finch.build(url, headers, body)
+      |> Finch.request(MatrixirAPIFinch)
+
+    case response do
+      {:ok, %Finch.Response{status: status, headers: headers}}
+      when status in [307, 308] ->
+        {"location", new_url} = List.keyfind!(headers, "location", 0)
+
+        request(api, method, new_url, body, json?, where)
+
+      _ ->
+        handle_response(response, json?)
+    end
   end
 
   @spec get(api(), url()) :: finch()
@@ -41,21 +71,25 @@ defmodule Matrixir.API.Client do
     request(api, :delete, route, body)
   end
 
-  def handle_response({:ok, %Finch.Response{status: 200, body: body}}) do
-    case JSON.decode(body) do
-      {:ok, json} -> {:ok, json}
-      {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
+  def handle_response({:ok, %Finch.Response{status: 200, body: body}}, json?) do
+    if json? do
+      case JSON.decode(body) do
+        {:ok, json} -> {:ok, json}
+        {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
+      end
+    else
+      {:ok, body}
     end
   end
 
-  def handle_response({:ok, %Finch.Response{status: _, body: body}}) do
+  def handle_response({:ok, %Finch.Response{status: _, body: body}}, _json?) do
     case JSON.decode(body) do
       {:ok, json} -> {:error, Matrixir.Error.__new__(:matrix, Matrixir.API.Error.from_json(json))}
       {:error, error} -> {:error, Matrixir.Error.__new__(:decode, error)}
     end
   end
 
-  def handle_response({:error, reason}) do
+  def handle_response({:error, reason}, _json?) do
     {:error, Matrixir.Error.__new__(:other, reason)}
   end
 end

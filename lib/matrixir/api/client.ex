@@ -4,8 +4,8 @@ defmodule Matrixir.API.Client do
   @type finch :: {:ok, Finch.Response.t()} | {:error, Exception.t()}
   @type response :: Matrixir.API.response()
   @type method :: Finch.Request.method()
-  @type body :: Finch.Response.body()
-  @type url :: Finch.Response.url()
+  @type body :: Finch.Request.body()
+  @type url :: Finch.Request.url()
   @type api :: Matrixir.API.t()
 
   @spec request(api(), method(), url(), body() | nil) :: finch()

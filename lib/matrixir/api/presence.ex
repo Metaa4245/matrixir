@@ -54,8 +54,8 @@ defmodule Matrixir.API.Presence do
     ]
   )
 
-  @spec get_user_presence(api(), String.t()) :: response()
-  def get_user_presence(api, user) do
+  @spec presence(api(), String.t()) :: response()
+  def presence(api, user) do
     Client.get(api, "#{@presence_endpoint}/#{user}/status")
   end
 
@@ -87,13 +87,13 @@ defmodule Matrixir.API.Presence do
     ]
   )
 
-  @spec set_user_presence(
+  @spec put_presence(
           api(),
           String.t(),
           String.t(),
           String.t() | nil
         ) :: response()
-  def set_user_presence(api, user, presence, status_message \\ nil) do
+  def put_presence(api, user, presence, status_message \\ nil) do
     Client.put(
       api,
       "#{@presence_endpoint}/#{user}/status",

@@ -52,8 +52,8 @@ defmodule Matrixir.API.RoomUpgrade do
     ]
   )
 
-  @spec upgrade_room(api(), String.t(), String.t()) :: response()
-  def upgrade_room(api, room, version) do
+  @spec upgrade(api(), String.t(), String.t()) :: response()
+  def upgrade(api, room, version) do
     Client.post(
       api,
       "#{@room_endpoint}/#{room}/upgrade",

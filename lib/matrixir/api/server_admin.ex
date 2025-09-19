@@ -49,8 +49,8 @@ defmodule Matrixir.API.ServerAdmin do
     ]
   )
 
-  @spec get_discovery_info(api()) :: response()
-  def get_discovery_info(api) do
+  @spec discovery_info(api()) :: response()
+  def discovery_info(api) do
     Client.get(api, "#{@well_known_endpoint}/client")
   end
 
@@ -86,8 +86,8 @@ defmodule Matrixir.API.ServerAdmin do
     ]
   )
 
-  @spec get_support_info(api()) :: response()
-  def get_support_info(api) do
+  @spec support_info(api()) :: response()
+  def support_info(api) do
     Client.get(api, "#{@well_known_endpoint}/support")
   end
 
@@ -163,8 +163,8 @@ defmodule Matrixir.API.ServerAdmin do
     ]
   )
 
-  @spec get_spec_versions(api()) :: response()
-  def get_spec_versions(api) do
+  @spec spec_versions(api()) :: response()
+  def spec_versions(api) do
     Client.get(api, "#{@matrix_endpoint}/versions")
   end
 
@@ -227,8 +227,8 @@ defmodule Matrixir.API.ServerAdmin do
     ]
   )
 
-  @spec ping_app_service(api(), String.t(), String.t() | nil) :: response()
-  def ping_app_service(api, id, transaction_id \\ nil) do
+  @spec ping_appservice(api(), String.t(), String.t() | nil) :: response()
+  def ping_appservice(api, id, transaction_id \\ nil) do
     Client.post(
       api,
       "#{@v1_endpoint}/appservice/#{id}/ping",
@@ -297,8 +297,8 @@ defmodule Matrixir.API.ServerAdmin do
     ]
   )
 
-  @spec get_room_summary(api(), String.t(), list(String.t())) :: response()
-  def get_room_summary(api, room, via \\ []) do
+  @spec room_summary(api(), String.t(), list(String.t())) :: response()
+  def room_summary(api, room, via \\ []) do
     query =
       Enum.map_join(
         via,

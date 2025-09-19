@@ -47,29 +47,29 @@ defmodule Matrixir.API do
     }
   end
 
-  defdelegate get_discovery_info(api), to: Matrixir.API.ServerAdmin
-  defdelegate get_support_info(api), to: Matrixir.API.ServerAdmin
+  defdelegate discovery_info(api), to: Matrixir.API.ServerAdmin
+  defdelegate support_info(api), to: Matrixir.API.ServerAdmin
   defdelegate whois(api, user), to: Matrixir.API.ServerAdmin
-  defdelegate get_spec_versions(api), to: Matrixir.API.ServerAdmin
-  defdelegate ping_app_service(api, id, transaction_id \\ nil), to: Matrixir.API.ServerAdmin
-  defdelegate get_room_summary(api, room, via \\ []), to: Matrixir.API.ServerAdmin
+  defdelegate spec_versions(api), to: Matrixir.API.ServerAdmin
+  defdelegate ping_appservice(api, id, transaction_id \\ nil), to: Matrixir.API.ServerAdmin
+  defdelegate room_summary(api, room, via \\ []), to: Matrixir.API.ServerAdmin
   defdelegate refresh_access_token(api, refresh_token), to: Matrixir.API.ServerAdmin
-  defdelegate get_user_presence(api, user), to: Matrixir.API.Presence
+  defdelegate presence(api, user), to: Matrixir.API.Presence
 
-  defdelegate set_user_presence(api, user, presence, status_message \\ nil),
+  defdelegate put_presence(api, user, presence, status_message \\ nil),
     to: Matrixir.API.Presence
 
-  defdelegate get_user_info(api, user), to: Matrixir.API.UserData
-  defdelegate get_user_avatar(api, user), to: Matrixir.API.UserData
-  defdelegate get_user_display_name(api, user), to: Matrixir.API.UserData
-  defdelegate get_user_data(api, user, type), to: Matrixir.API.UserData
-  defdelegate get_room_user_data(api, user, room, type), to: Matrixir.API.UserData
-  defdelegate set_user_avatar(api, user, avatar), to: Matrixir.API.UserData
-  defdelegate set_user_display_name(api, user, display_name), to: Matrixir.API.UserData
-  defdelegate set_user_data(api, user, type, data), to: Matrixir.API.UserData
-  defdelegate set_room_user_data(api, user, room, type, data), to: Matrixir.API.UserData
-  defdelegate get_room_user_tags(api, user, room), to: Matrixir.API.UserData
-  defdelegate add_room_user_tag(api, user, room, tag, data), to: Matrixir.API.UserData
-  defdelegate remove_room_user_tag(api, user, room, tag), to: Matrixir.API.UserData
-  defdelegate upgrade_room(api, room, version), to: Matrixir.API.RoomUpgrade
+  defdelegate info(api, user), to: Matrixir.API.UserData
+  defdelegate avatar_url(api, user), to: Matrixir.API.UserData
+  defdelegate display_name(api, user), to: Matrixir.API.UserData
+  defdelegate account_data(api, user, type), to: Matrixir.API.UserData
+  defdelegate room_account_data(api, user, room, type), to: Matrixir.API.UserData
+  defdelegate put_avatar_url(api, user, avatar), to: Matrixir.API.UserData
+  defdelegate put_display_name(api, user, display_name), to: Matrixir.API.UserData
+  defdelegate put_account_data(api, user, type, data), to: Matrixir.API.UserData
+  defdelegate put_room_account_data(api, user, room, type, data), to: Matrixir.API.UserData
+  defdelegate room_user_tags(api, user, room), to: Matrixir.API.UserData
+  defdelegate put_room_user_tag(api, user, room, tag, data), to: Matrixir.API.UserData
+  defdelegate delete_room_user_tag(api, user, room, tag), to: Matrixir.API.UserData
+  defdelegate upgrade(api, room, version), to: Matrixir.API.RoomUpgrade
 end

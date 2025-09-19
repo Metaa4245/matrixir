@@ -57,8 +57,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec get_user_info(api(), String.t()) :: response()
-  def get_user_info(api, user) do
+  @spec info(api(), String.t()) :: response()
+  def info(api, user) do
     Client.get(api, "#{@profile_endpoint}/#{user}")
   end
 
@@ -100,8 +100,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec get_user_avatar(api(), String.t()) :: response()
-  def get_user_avatar(api, user) do
+  @spec avatar_url(api(), String.t()) :: response()
+  def avatar_url(api, user) do
     Client.get(api, "#{@profile_endpoint}/#{user}/avatar_url")
   end
 
@@ -143,8 +143,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec get_user_display_name(api(), String.t()) :: response()
-  def get_user_display_name(api, user) do
+  @spec display_name(api(), String.t()) :: response()
+  def display_name(api, user) do
     Client.get(api, "#{@profile_endpoint}/#{user}/displayname")
   end
 
@@ -186,8 +186,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec get_user_data(api(), String.t(), String.t()) :: response()
-  def get_user_data(api, user, type) do
+  @spec account_data(api(), String.t(), String.t()) :: response()
+  def account_data(api, user, type) do
     Client.get(api, "#{@user_endpoint}/#{user}/account_data/#{type}")
   end
 
@@ -235,8 +235,13 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec get_room_user_data(api(), String.t(), String.t(), String.t()) :: response()
-  def get_room_user_data(api, user, room, type) do
+  @spec room_account_data(
+          api(),
+          String.t(),
+          String.t(),
+          String.t()
+        ) :: response()
+  def room_account_data(api, user, room, type) do
     Client.get(
       api,
       "#{@user_endpoint}/#{user}/rooms/#{room}/account_data/#{type}"
@@ -275,8 +280,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec set_user_avatar(api(), String.t(), String.t()) :: response()
-  def set_user_avatar(api, user, avatar) do
+  @spec put_avatar_url(api(), String.t(), String.t()) :: response()
+  def put_avatar_url(api, user, avatar) do
     Client.put(
       api,
       "#{@profile_endpoint}/#{user}/avatar_url",
@@ -316,8 +321,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec set_user_display_name(api(), String.t(), String.t()) :: response()
-  def set_user_display_name(api, user, display_name) do
+  @spec put_display_name(api(), String.t(), String.t()) :: response()
+  def put_display_name(api, user, display_name) do
     Client.put(
       api,
       "#{@profile_endpoint}/#{user}/displayname",
@@ -367,8 +372,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec set_user_data(api(), String.t(), String.t(), map()) :: response()
-  def set_user_data(api, user, type, data) do
+  @spec put_account_data(api(), String.t(), String.t(), map()) :: response()
+  def put_account_data(api, user, type, data) do
     Client.put(
       api,
       "#{@user_endpoint}/#{user}/account_data/#{type}",
@@ -423,14 +428,14 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec set_room_user_data(
+  @spec put_room_account_data(
           api(),
           String.t(),
           String.t(),
           String.t(),
           map()
         ) :: response()
-  def set_room_user_data(api, user, room, type, data) do
+  def put_room_account_data(api, user, room, type, data) do
     Client.put(
       api,
       "#{@user_endpoint}/#{user}/rooms/#{room}/account_data/#{type}",
@@ -465,8 +470,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec get_room_user_tags(api(), String.t(), String.t()) :: response()
-  def get_room_user_tags(api, user, room) do
+  @spec room_user_tags(api(), String.t(), String.t()) :: response()
+  def room_user_tags(api, user, room) do
     Client.get(api, "#{@user_endpoint}/#{user}/rooms/#{room}/tags")
   end
 
@@ -491,14 +496,14 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec add_room_user_tag(
+  @spec put_room_user_tag(
           api(),
           String.t(),
           String.t(),
           String.t(),
           map()
         ) :: response()
-  def add_room_user_tag(api, user, room, tag, data) do
+  def put_room_user_tag(api, user, room, tag, data) do
     Client.put(
       api,
       "#{@user_endpoint}/#{user}/rooms/#{room}/tags/#{tag}",
@@ -526,8 +531,8 @@ defmodule Matrixir.API.UserData do
     ]
   )
 
-  @spec remove_room_user_tag(api(), String.t(), String.t(), String.t()) :: response()
-  def remove_room_user_tag(api, user, room, tag) do
+  @spec delete_room_user_tag(api(), String.t(), String.t(), String.t()) :: response()
+  def delete_room_user_tag(api, user, room, tag) do
     Client.delete(
       api,
       "#{@user_endpoint}/#{user}/rooms/#{room}/tags/#{tag}"
